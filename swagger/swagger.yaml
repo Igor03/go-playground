@@ -1,0 +1,36 @@
+basePath: /
+info:
+  contact: {}
+  description: Dummy API for uploading artifacts
+  title: Cache API
+  version: "1.0"
+paths:
+  /artifact:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Receives multipart form with key + file
+      parameters:
+      - description: hash/key
+        in: formData
+        name: key
+        required: true
+        type: string
+      - description: artifact file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: bad request
+          schema:
+            type: string
+      summary: Upload an artifact
+swagger: "2.0"

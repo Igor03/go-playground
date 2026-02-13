@@ -1,4 +1,4 @@
-package caas
+package api
 
 import (
 	"context"
@@ -17,24 +17,24 @@ import (
 	swagger "github.com/swaggo/http-swagger"
 )
 
-type ServerSettings struct {
+type ApiSettings struct {
 	BaseUrl   string
 	Port      int
 	UploadDir string
 }
 
-type Server struct {
-	Settings ServerSettings
+type Api struct {
+	Settings ApiSettings
 	srv      *http.Server
 }
 
-func NewServer(settings ServerSettings) *Server {
-	return &Server{
+func NewApi(settings ApiSettings) *Api {
+	return &Api{
 		Settings: settings,
 	}
 }
 
-func (s *Server) Serve(ctx context.Context) error {
+func (s *Api) Start(ctx context.Context) error {
 
 	r := chi.NewRouter()
 
